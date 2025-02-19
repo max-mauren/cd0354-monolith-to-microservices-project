@@ -1,0 +1,54 @@
+version: '3'
+services:
+  udagram-api-feed:
+    image: udagram-api-feed
+    build:
+      context: ./udagram-api-feed
+    ports:
+      - "8081:8080"
+    environment:
+      - POSTGRES_USERNAME=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_PROFILE=${AWS_PROFILE}
+      - AWS_BUCKET=${AWS_BUCKET}
+      - URL=${URL}
+      - JWT_SECRET=${JWT_SECRET}
+
+  udagram-api-user:
+    image: udagram-api-user
+    build:
+      context: ./udagram-api-user
+    ports:
+      - "8082:8080"
+    environment:
+      - POSTGRES_USERNAME=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_PROFILE=${AWS_PROFILE}
+      - AWS_BUCKET=${AWS_BUCKET}
+      - URL=${URL}
+      - JWT_SECRET=${JWT_SECRET}
+
+  udagram-frontend:
+    image: udagram-frontend
+    build:
+      context: ./udagram-frontend
+    ports:
+      - "8100:8100"
+    environment:
+      - API_HOST=http://localhost:8080/api/v0
+
+  udagram-reverseproxy:
+    image: udagram-reverseproxy
+    build:
+      context: ./udagram-reverseproxy
+    ports:
+      - "8080:8080"
+    environment:
+      - API_FEED=http://udagram-api-feed:8081
+      - API_USER=http://udagram-api-user:8082
