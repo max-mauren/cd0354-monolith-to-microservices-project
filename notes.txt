@@ -1,8 +1,1 @@
 
-aws rds create-db-instance --engine "postgres" --engine-version "16.3" --engine-lifecycle-support "open-source-rds-extended-support-disabled" --db-instance-identifier "udagramdb" --master-username "maxpgadmin" --db-instance-class "db.t4g.micro"  --db-name "udagramdb"  --port "5432" --storage-type "gp2" --allocated-storage "20" --backup-retention-period "1"  --db-parameter-group-name "max-param-name" --option-group-name "default:postgres-16" --max-allocated-storage "1000" --ca-certificate-identifier "rds-ca-rsa2048-g1" --master-user-password "d0wnt0wnXEN"
-
-udagramdb.c9jhrzfbaw1k.us-east-1.rds.amazonaws.com
-
-# run in cmd window
-start /w "" ".\Docker Desktop Installer.exe" install -accept-license  --installation-dir=D:\Docker --wsl-default-data-root=D:\Docker\images
-
