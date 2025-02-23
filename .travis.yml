@@ -10,6 +10,10 @@ before_install:
 
 script:
   - docker-compose -f docker-compose-build.yaml build
+  - docker tag mmauren/udagram-api-feed mmauren/udagram-api-feed:latest
+  - docker tag mmauren/udagram-api-user mmauren/udagram-api-user:latest
+  - docker tag mmauren/udagram-frontend mmauren/udagram-frontend:latest
+  - docker tag mmauren/reverseproxy mmauren/reverseproxy:latest
 
 after_success:
   - docker push mmauren/udagram-api-feed
