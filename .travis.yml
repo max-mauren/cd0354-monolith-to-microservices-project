@@ -12,10 +12,10 @@ script:
   - docker-compose -f docker-compose-build.yaml build
 
 after_success:
-  - docker push mmauren/udagram-api-feed push
-  - docker push mmauren/udagram-api-user push
-  - docker push mmauren/udagram-frontend push
-  - docker push mmauren/reverseproxy push
+  - docker push mmauren/udagram-api-feed
+  - docker push mmauren/udagram-api-user
+  - docker push mmauren/udagram-frontend
+  - docker push mmauren/reverseproxy
 
 # env:
 #   global:
