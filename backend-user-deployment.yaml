@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-user
+  template:
+    metadata:
+      labels:
+        app: backend-user
+    spec:
+      containers:
+      - name: backend-user
+        image: mmauren/udagram-api-user
+        ports:
+        - containerPort: 8081
+        envFrom:
+        - configMapRef:
+            name: udagram-config
+        - secretRef:
+            name: postgres-secrets
+        volumeMounts:
+        - name: aws-secrets
+          mountPath: /root/.aws
+      volumes:
+      - name: aws-secrets
+        hostPath:
+          path: /root/.aws
+

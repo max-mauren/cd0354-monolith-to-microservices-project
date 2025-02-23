@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: mmauren/udagram-frontend
+        ports:
+        - containerPort: 80
+        env:
+        - name: API_HOST
+          value: "http://localhost:8080/api/v0"
