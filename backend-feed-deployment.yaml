@@ -21,11 +21,11 @@ spec:
         - configMapRef:
             name: udagram-config
         - secretRef:
-            name: postgres-secrets
+            name: postgres-secret
         volumeMounts:
-        - name: aws-secrets
+        - name: aws-secret
           mountPath: /root/.aws
       volumes:
-      - name: aws-secrets
+      - name: aws-secret
         hostPath:
           path: /root/.aws
