@@ -15,8 +15,15 @@ spec:
       containers:
       - name: backend-user
         image: mmauren/udagram-api-user
+        resources:
+          requests:
+            memory: "1024Mi"
+            cpu: "250m"
+          limits:
+            memory: "2048Mi"
+            cpu: "500m"    
         ports:
-        - containerPort: 8081
+        - containerPort: 8080
         envFrom:
         - configMapRef:
             name: udagram-config

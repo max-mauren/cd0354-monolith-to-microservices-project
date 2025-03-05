@@ -17,6 +17,10 @@ spec:
         image: mmauren/udagram-frontend
         ports:
         - containerPort: 80
-        env:
-        - name: API_HOST
-          value: "http://localhost:8080/api/v0"
+        resources:
+          requests:
+            memory: "1024Mi"
+            cpu: "250m"
+          limits:
+            memory: "2048Mi"
+            cpu: "500m"     
